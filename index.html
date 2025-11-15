@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skin Cancer Detection | AI Predictor</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+
+    header {
+      background-color: #2b2d42;
+      color: white;
+      text-align: center;
+      padding: 20px 10px;
+      font-size: 1.5em;
+      letter-spacing: 1px;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 40px auto;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+      padding: 30px;
+      text-align: center;
+    }
+
+    h2 {
+      color: #2b2d42;
+    }
+
+    p {
+      color: #555;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    form {
+      margin-top: 20px;
+    }
+
+    input[type="file"] {
+      padding: 8px;
+      background: #edf2f4;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      width: 80%;
+      margin-bottom: 15px;
+    }
+
+    button {
+      background: #ef233c;
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 1em;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #d90429;
+    }
+
+    img {
+      margin-top: 20px;
+      max-width: 300px;
+      border-radius: 10px;
+      border: 2px solid #ddd;
+    }
+
+    .result {
+      margin-top: 20px;
+      font-size: 1.2em;
+      padding: 15px;
+      border-radius: 10px;
+      background: #f1faee;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9em;
+      color: #666;
+      margin-top: 50px;
+    }
+
+    .highlight {
+      color: #d90429;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    🩺 AI-Powered Skin Cancer Detection
+  </header>
+
+  <div class="container">
+    <h2>Upload a Skin Lesion Image</h2>
+    <p>
+      This AI model analyzes dermoscopic images to detect potential types of 
+      <strong>skin cancer</strong>. It was trained using the <em>HAM10000 dataset</em>
+      on an advanced deep learning architecture called <strong>Xception</strong>.
+    </p>
+
+    <form action="/predict" method="POST" enctype="multipart/form-data">
+      <input type="file" name="file" accept="image/*" required>
+      <br>
+      <button type="submit">🔍 Analyze Image</button>
+    </form>
+
+    {% if result %}
+      <div class="result">
+        <h3>Prediction Result:</h3>
+        <p>The model predicts: <span class="highlight">{{ result }}</span></p>
+        <img src="{{ image_file }}" alt="Uploaded Image">
+        <p><small>(Result generated using trained Xception model)</small></p>
+      </div>
+    {% endif %}
+  </div>
+
+  <footer>
+    Developed by <strong>Arnabi Nandy</strong> | Powered by PyTorch + Flask
+  </footer>
+</body>
+</html>
